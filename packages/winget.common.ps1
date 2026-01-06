@@ -19,7 +19,6 @@ $CommonPackagesIds = @(
 	"OpenJS.NodeJS.LTS"
 	"GoLang.Go"
 	"Netbird.Netbird"
-	"ShareX.ShareX"
 
 	"JetBrains.Toolbox"
 
