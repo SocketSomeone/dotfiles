@@ -20,7 +20,7 @@ Set-PSReadLineOption -EditMode Windows
 
 $THEME = "robbyrussell"
 
-oh-my-posh init pwsh --config "$env:LOCALAPPDATA\Programs\oh-my-posh\themes\$THEME.omp.json" | Invoke-Expression
+oh-my-posh init pwsh --config "$THEME" | Invoke-Expression
 
 
 Register-ArgumentCompleter -Native -CommandName winget -ScriptBlock {

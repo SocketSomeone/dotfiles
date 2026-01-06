@@ -11,7 +11,7 @@ $CommonPackagesIds = @(
 	"Microsoft.VisualStudioCode"
 	"Git.Git"
 	"hoppscotch.Hoppscotch"
-	"7zip.7zip"
+	"Sharex"
 	"Docker.DockerDesktop"
 	"GitHub.cli"
 	"Figma.Figma"

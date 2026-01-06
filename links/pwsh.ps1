@@ -17,7 +17,5 @@ foreach ($Module in $PwshModules) {
 }
 
 Write-Success "PowerShell modules installed successfully"
-
-
-Add-Symlink "$($env:USERPROFILE)\Documents\PowerShell\Microsoft.PowerShell_profile.ps1" "$($CONFIG)\pwsh\Microsoft.PowerShell_profile.ps1"
+Add-Symlink "$($env:PROFILE)\Microsoft.PowerShell_profile.ps1" "$($CONFIG)\pwsh\Microsoft.PowerShell_profile.ps1"
 Write-Success "PowerShell module installation completed successfully"
