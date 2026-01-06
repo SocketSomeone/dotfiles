@@ -32,10 +32,10 @@ Write-Info "Installing packages"
 $PackageScripts = Find-PowershellScripts $PACKAGES
 Write-Debug "Found $($PackageScripts.Count) $PACKAGES package scripts to execute"
 
-# foreach ($Script in $PackageScripts) {
-# 	Write-Debug "Executing package script: $($Script.FullName)"
-# 	Invoke-PowershellScript $Script.FullName
-# }
+foreach ($Script in $PackageScripts) {
+	Write-Debug "Executing package script: $($Script.FullName)"
+	Invoke-PowershellScript $Script.FullName
+}
 
 Write-Info "Creating symlinks for configuration files"
 $SymlinkScripts = Find-PowershellScripts $LINKS
