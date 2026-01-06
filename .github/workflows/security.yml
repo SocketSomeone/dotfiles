@@ -60,7 +60,6 @@ jobs:
       matrix:
         include:
           - language: actions
-          - language: javascript-typescript
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5

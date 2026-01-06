@@ -26,5 +26,4 @@ function Add-Symlink {
 	Write-Success "Created symlink at: $target."
 }
 
-
 Export-ModuleMember -Function *

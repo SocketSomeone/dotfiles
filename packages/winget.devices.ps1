@@ -9,7 +9,7 @@ $DevicePackagesIds = @(
 
 foreach ($PackageId in $DevicePackagesIds) {
 	Write-Info "Installing package ID: $PackageId"
-	winget install --id $PackageId --silent --accept-source-agreements --accept-package-agreements
+	winget install -e --id $PackageId --silent --accept-source-agreements --accept-package-agreements
 }
 
 Write-Success "Device-specific package installation completed successfully"
