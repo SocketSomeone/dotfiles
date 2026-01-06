@@ -19,6 +19,7 @@ $CommonPackagesIds = @(
 	"OpenJS.NodeJS.LTS"
 	"GoLang.Go"
 	"Netbird.Netbird"
+	"qBittorrent.qBittorrent"
 
 	"JetBrains.Toolbox"
 

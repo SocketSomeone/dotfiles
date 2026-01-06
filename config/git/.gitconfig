@@ -1,0 +1,17 @@
+[user]
+	email = socket.someone@gmail.com
+	name = SocketSomeone
+[core]
+	autocrlf = input
+	eol = lf
+	editor = notepad.exe
+[commit]
+	gpgsign = true
+[gpg]
+	format = ssh
+[init]
+	defaultBranch = master
+[push]
+	autoSetupRemote = true
+[url "ssh://git@"]
+	insteadOf = https://
