@@ -23,7 +23,6 @@ $CommonPackagesIds = @(
 
 	"JetBrains.Toolbox"
 
-
 	"JanDeDobbeleer.OhMyPosh"
 	"Microsoft.WindowsTerminal"
 	"Microsoft.PowerShell"
