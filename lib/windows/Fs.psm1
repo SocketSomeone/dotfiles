@@ -18,4 +18,12 @@ function Invoke-PowershellScript {
 	& $ScriptPath
 }
 
+function New-TemporaryFolder {
+	$tempPath = [System.IO.Path]::GetTempPath()
+	$folderName = [System.IO.Path]::GetRandomFileName()
+	$fullPath = Join-Path -Path $tempPath -ChildPath $folderName
+	New-Item -ItemType Directory -Path $fullPath | Out-Null
+	return $fullPath
+}
+
 export-ModuleMember -Function *

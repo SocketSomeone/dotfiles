@@ -21,3 +21,8 @@ Write-Success "PowerShell modules installed successfully"
 Write-Info "Creating symlinks for PowerShell configuration files"
 Add-Symlink "$($env:PROFILE)\Microsoft.PowerShell_profile.ps1" "$($CONFIG)\pwsh\Microsoft.PowerShell_profile.ps1"
 Write-Success "PowerShell module installation completed successfully"
+
+
+Write-Info "Installing PowerShell fonts"
+oh-my-posh font install JetBrainsMono
+Write-Success "PowerShell fonts installed successfully"
