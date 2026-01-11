@@ -52,3 +52,11 @@ What the installer does:
 - Use the `-Debug` switch when launching `install/windows.ps1` to see every command/path the bootstrapper touches.
 - Because the repo stores plain text configuration, it's easy to track changes with Git across machines.
 
+## Stay in touch
+
+* Author - [Alexey Filippov](https://t.me/socketsomeone)
+* Twitter - [@SocketSomeone](https://twitter.com/SocketSomeone)
+
+## License
+
+[MIT](https://github.com/SocketSomeone/dotfiles/blob/master/LICENSE) © [Alexey Filippov](https://github.com/SocketSomeone)
