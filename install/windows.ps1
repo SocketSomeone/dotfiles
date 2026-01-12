@@ -47,5 +47,16 @@ foreach ($Script in $SymlinkScripts) {
 	Invoke-PowershellScript $Script.FullName
 }
 
+Write-Info "Applying OS specific configurations"
+$OsScripts = Find-PowershellScripts $OS
+
+Write-Debug "Found $($OsScripts.Count) $OS OS scripts to execute"
+
+foreach ($Script in $OsScripts) {
+	Write-Debug "Executing symlink script: $($Script.FullName)"
+	Invoke-PowershellScript $Script.FullName
+}
+
 
 Write-Success "Windows setup completed successfully"
+Write-Success "You may need to restart your computer for all changes to take effect."

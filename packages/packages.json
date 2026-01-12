@@ -35,9 +35,6 @@
 					"PackageIdentifier": "Netbird.Netbird"
 				},
 				{
-					"PackageIdentifier": "AgileBits.1Password"
-				},
-				{
 					"PackageIdentifier": "AgileBits.1Password.CLI"
 				},
 				{
@@ -87,7 +84,16 @@
 		{
 			"Packages": [
 				{
+					"$name": "PowerToys",
 					"PackageIdentifier": "XP89DCGQ3K6VLD"
+				},
+				{
+					"$name": "iCloud",
+					"PackageIdentifier": "9PKTQ5699M62"
+				},
+				{
+					"$name": "1Password",
+					"PackageIdentifier": "9NZWS5X28P0J"
 				}
 			],
 			"SourceDetails": {
