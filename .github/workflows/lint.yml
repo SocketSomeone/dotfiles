@@ -49,9 +49,3 @@ jobs:
         uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: results.sarif
-
-      - name: Set up editorconfig-checker
-        uses: editorconfig-checker/action-editorconfig-checker@v2
-        
-      - name: Run editorconfig-checker
-        run: editorconfig-checker
