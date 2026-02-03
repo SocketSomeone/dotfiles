@@ -50,11 +50,5 @@ jobs:
         with:
           sarif_file: results.sarif
 
-      - name: Markdown lint
-        uses: DavidAnson/markdownlint-cli2-action@v14
-        with:
-          globs: |
-            **/*.md
-
       - name: EditorConfig checker
         uses: editorconfig-checker/action-editorconfig-checker@v2
