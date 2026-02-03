@@ -9,7 +9,8 @@ permissions:
   security-events: write
 
 jobs:
-  lint:
+  shell:
+    name: Shell Linting
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -38,11 +39,18 @@ jobs:
             echo "No .sh files found."
           fi
 
+  powershell:
+    name: PowerShell Linting
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
       - name: Run PSScriptAnalyzer
         uses: microsoft/psscriptanalyzer-action@v1.0
         with:
           path: .\
-          recurse: true 
+          recurse: true
           output: results.sarif
 
       - name: Upload PSScriptAnalyzer SARIF results file
