@@ -72,6 +72,9 @@
 				},
 				{
 					"PackageIdentifier": "JanDeDobbeleer.OhMyPosh"
+				},
+				{
+					"PackageIdentifier": "albertony.npiperelay"
 				}
 			],
 			"SourceDetails": {
