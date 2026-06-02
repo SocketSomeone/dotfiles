@@ -7,7 +7,7 @@
 	eol = lf
 	editor = notepad.exe
 	sshCommand = C:/Windows/System32/OpenSSH/ssh.exe
-	excludesfile = C:\\Users\\someone\\.gitignore
+	excludesfile = C:\\Users\\someone\\.gitignore_global
 [commit]
 	gpgsign = true
 [gpg]
