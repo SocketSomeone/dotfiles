@@ -8,11 +8,17 @@ and keeps personal application settings versioned inside this repo.
 
 | Path                                | Description                                                                                                 |
 | ----------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| `install/windows.ps1`               | Entry point that wires all modules together and orchestrates package installs + symlink creation.           |
+| `install/windows.ps1`               | Windows entry point that wires all modules together and orchestrates package installs + symlink creation.   |
+| `install/linux.sh`                  | Linux entry point that runs package, link, and OS configuration scripts.                                    |
+| `install/wsl.sh`                    | Compatibility wrapper that currently delegates to `install/linux.sh`.                                       |
 | `lib/windows/*.psm1`                | Internal helper modules (logging, filesystem helpers, shared constants, confirmation prompts, etc.).        |
+| `lib/linux/*.sh`                    | Internal Linux helper scripts used by the Bash installer.                                                   |
 | `packages/packages.json`            | WinGet import manifest for desktop software (Docker, VS Code, JetBrains Toolbox, etc.).                     |
 | `packages/winget.sync-packages.ps1` | Script invoked by the installer to import the WinGet manifest.                                              |
+| `packages/linux/*.sh`               | Optional Linux package installation scripts.                                                               |
 | `links/*.ps1`                       | One script per app that installs modules/fonts (PowerShell) or creates symlinks beneath `%USERPROFILE%`.    |
+| `links/linux/*.sh`                  | Optional Linux link scripts, including GNU Stow-based links.                                               |
+| `os/linux/*.sh`                     | Optional Linux OS configuration scripts.                                                                   |
 | `config/**`                         | The actual dotfiles that get linked (PowerShell profile, Git config, WSL, Windows Terminal, GoXLR presets). |
 
 ## Requirements
@@ -35,6 +41,30 @@ What the installer does:
 1. Imports helper modules from `lib/windows`.
 2. Runs every script under `packages/` (currently just the WinGet import) to ensure required software is present.
 3. Executes all scripts under `links/` to create symlinks for configuration files/directories and to install shell modules/fonts.
+
+## Bootstrap Linux
+
+Run this from inside Linux or a WSL distribution:
+
+```bash
+git clone https://github.com/SocketSomeone/dotfiles.git ~/dotfiles
+cd ~/dotfiles
+bash install/linux.sh
+exec bash
+```
+
+For WSL, `bash install/wsl.sh` is also available as a compatibility wrapper. If the repo is already cloned on the Windows side, you can run the script from the mounted checkout, for example
+`/mnt/c/Users/<windows-user>/dotfiles`.
+
+What the Linux installer does:
+
+1. Imports helper scripts from `lib/linux`.
+2. Runs every script under `packages/linux`.
+3. Runs every script under `links/linux`.
+4. Runs every script under `os/linux`.
+
+Add future Linux-specific setup as small `.sh` scripts in `packages/linux`, `links/linux`, or `os/linux`. Link scripts can use
+the Stow helper from `lib/linux/stow.sh`.
 
 ## Customizing
 
