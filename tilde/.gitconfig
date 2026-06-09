@@ -1,0 +1,24 @@
+[user]
+	email = socket.someone@gmail.com
+	name = SocketSomeone
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMBQDAkQt6duaqcpNxuUpJUoPihZ0ImANL16cdrOvHg5
+[core]
+	autocrlf = input
+	eol = lf
+	editor = notepad.exe
+	excludesfile = ~/.gitignore
+	attributesFile = ~/.gitattributes
+[commit]
+	gpgsign = true
+[gpg]
+	format = ssh
+[init]
+	defaultBranch = master
+[push]
+	autoSetupRemote = true
+[url "ssh://git@"]
+	insteadOf = https://
+
+# Include local/private config if relevant (credential helper, SSH, user identity)
+[include]
+  path = ~/.gitconfig.local

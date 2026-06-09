@@ -1,0 +1,44 @@
+# Brewfile for Homebrew package management
+tap "bufbuild/buf"
+
+brew "git"
+brew "zsh"
+brew "stow"
+brew "gh"
+brew "curl"
+
+# Programming languages
+brew "go"
+brew "nvm"
+brew "glib"
+brew "sdcc"
+brew "openjdk"
+brew "python@3.14"
+
+# Utilities
+brew "jq"
+brew "yq"
+brew "ffmpeg"
+brew "inetutils"
+brew "tree"
+
+# Cask applications
+cask "1password-cli"
+cask "caffeine"
+cask "claude"
+cask "claude-code"
+cask "copilot-cli"
+cask "codex"
+cask "raycast"
+cask "discord"
+cask "docker"
+cask "figma"
+cask "telegram-desktop"
+
+# Fonts
+cask "font-jetbrains-mono"
+cask "font-jetbrains-mono-nerd-font"
+
+# NPM
+npm "corepack"
+npm "uipro-cli"
