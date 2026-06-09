@@ -38,7 +38,3 @@ cask "telegram-desktop"
 # Fonts
 cask "font-jetbrains-mono"
 cask "font-jetbrains-mono-nerd-font"
-
-# NPM
-npm "corepack"
-npm "uipro-cli"
