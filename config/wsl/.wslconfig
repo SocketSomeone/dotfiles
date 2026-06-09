@@ -1,4 +1,0 @@
-[wsl2]
-memory=8GB     # Due 32GB of PC
-processors=4   # Virtual processors
-localhostforwarding=true
