@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# Relink dotfiles after `git pull`, so new files in tilde/ show up in $HOME
+if command -v stow >/dev/null 2>&1; then
+  "$(git rev-parse --show-toplevel)/setup/symlinks.sh"
+fi

@@ -26,6 +26,14 @@ command_exists() {
   command -v "$@" &> /dev/null
 }
 
+is_macos() {
+  [[ "$(uname -s)" == "Darwin" ]]
+}
+
+is_wsl() {
+  grep -qi microsoft /proc/version 2>/dev/null
+}
+
 echo -e "
 ${yellow}
  ______________________________________
@@ -43,13 +51,8 @@ if [ $# -ne 1 ] || [ "$1" != "-y" ]; then
   read key
 fi
 
-# Backup existing zsh file
-if [[ -e "$HOME/.zshrc" ]]; then
-  mv "$HOME/.zshrc" "$HOME/.zshrc.backup"
-fi
-
 # Use Touch ID to authorize sudo
-if [ ! -f /etc/pam.d/sudo_local ]; then
+if is_macos && [ ! -f /etc/pam.d/sudo_local ]; then
   title "🔒 Enabling Touch ID to authorize sudo commands…"
   echo "auth       sufficient     pam_tid.so" | sudo tee /etc/pam.d/sudo_local
 fi
@@ -74,9 +77,19 @@ title "🚀 Setting up OS defaults…"
 ~/dotfiles/setup/os.sh
 echo
 
+# WSL changes
+if is_wsl; then
+  title "🪟 Setting up WSL…"
+  ~/dotfiles/setup/wsl.sh
+  echo
+fi
+
 # Install dotfiles symlinks
 title "🍤 Setting up symlinks…"
 ~/dotfiles/setup/symlinks.sh
 echo
+
+# Relink automatically after every `git pull`
+git -C ~/dotfiles config core.hooksPath .githooks
 
 echo "🦏 ${green}All done! Open a new terminal for the changes to take effect or run: source ~/.zshrc.${reset}"
