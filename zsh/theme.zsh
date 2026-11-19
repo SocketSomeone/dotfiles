@@ -16,9 +16,6 @@ if [[ ! -s "$ANTIGEN" ]]; then
   fi
 fi
 
-autoload -Uz compinit
-compinit -i
-
 # Load Antigen
 source "$ANTIGEN"
 
@@ -43,3 +40,7 @@ antigen theme robbyrussell
 
 # Tell Antigen that you're done.
 antigen apply
+
+# Init completions after fpath
+autoload -Uz compinit
+compinit -i

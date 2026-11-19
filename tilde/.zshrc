@@ -22,4 +22,10 @@ if [[ -f ~/.aliases ]]; then
   source ~/.aliases
 fi
 
-# . "$HOME/.local/bin/env"
+# pnpm
+export PNPM_HOME="$HOME/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME/bin:"*) ;;
+  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
+esac
+# pnpm end
