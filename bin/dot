@@ -1,0 +1,93 @@
+#!/bin/bash
+
+# Keep dotfiles in sync: `dot update` pulls and applies changes, `dot status` shows sync state
+
+set -euo pipefail
+
+DOTFILES_DIR="$HOME/dotfiles"
+
+bold=$(tput bold 2>/dev/null || true)
+yellow=$(tput setaf 3 2>/dev/null || true)
+reset=$(tput sgr0 2>/dev/null || true)
+
+title() {
+  echo "${bold}==> $1${reset}"
+}
+
+is_wsl() {
+  grep -qi microsoft /proc/version 2>/dev/null
+}
+
+dotgit() {
+  git -C "$DOTFILES_DIR" "$@"
+}
+
+usage() {
+  cat <<USAGE
+Usage: dot <command>
+
+Commands:
+  update   Pull latest dotfiles, relink and install new packages
+  status   Show local changes and sync state with GitHub
+USAGE
+}
+
+cmd_status() {
+  dotgit fetch --quiet
+  dotgit status --short --branch
+
+  local behind
+  behind="$(dotgit rev-list --count 'HEAD..@{u}')"
+  if (( behind )); then
+    echo
+    echo "${yellow}$behind new commit(s) on GitHub, run: dot update${reset}"
+  fi
+}
+
+cmd_update() {
+  local before after
+  before="$(dotgit rev-parse HEAD)"
+
+  title "Pulling dotfiles…"
+  # --autostash keeps local uncommitted changes (e.g. Windows Terminal settings) out of the way
+  dotgit pull --rebase --autostash --quiet
+  after="$(dotgit rev-parse HEAD)"
+
+  if [[ "$before" == "$after" ]]; then
+    echo "Already up to date."
+    return
+  fi
+
+  dotgit log --oneline "$before..$after"
+  echo
+
+  # post-merge hook doesn't run on rebase pulls, so relink here
+  title "Relinking…"
+  "$DOTFILES_DIR/setup/symlinks.sh"
+  echo
+
+  if ! dotgit diff --quiet "$before" "$after" -- brew/Brewfile; then
+    if command -v brew >/dev/null 2>&1; then
+      title "Brewfile changed, installing packages…"
+      # Only install what's missing, upgrading everything is a separate decision
+      brew bundle --no-upgrade --file="$DOTFILES_DIR/brew/Brewfile"
+      echo
+    else
+      echo "${yellow}Brewfile changed, but brew is not installed${reset}"
+    fi
+  fi
+
+  if is_wsl; then
+    title "Checking WSL setup…"
+    "$DOTFILES_DIR/setup/wsl.sh"
+    echo
+  fi
+
+  echo "Done. Open a new terminal or run: source ~/.zshrc"
+}
+
+case "${1:-}" in
+  update) cmd_update ;;
+  status) cmd_status ;;
+  *) usage; exit 1 ;;
+esac
